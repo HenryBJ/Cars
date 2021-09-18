@@ -1,23 +1,20 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS base
 WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 
-# Copy necessary files and restore as distinct layer
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
 COPY ["Cars.csproj","Cars/"]
-RUN dotnet restore "Cars/Cars.csproj" -s https://api.nuget.org/v3/index.json 
+RUN dotnet restore "Cars/Cars.csproj" 
+COPY . .
+WORKDIR "/src/Cars"
+RUN dotnet build "Cars.csproj" -c Release -o /app/build
 
-# Copy everything else and build
-COPY . ./
-WORKDIR "/app/Cars"
-RUN dotnet publish "Cars.csproj" -c Release -o out
+FROM build AS publish
+RUN dotnet publish "Cars.csproj" -c Release -o /app/publish
 
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
+FROM base AS final
 WORKDIR /app
-COPY --from=build-env "/app/Cars/out" .
-
-# Expose ports
-EXPOSE 80/tcp
-
-
-# Start
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Cars.dll"]
