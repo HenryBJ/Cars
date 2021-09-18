@@ -54,9 +54,9 @@ namespace Cars.Controllers
             return View("Index");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Listado()
         {
-            return View();
+            return View(_repo.ListCars(0,0));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

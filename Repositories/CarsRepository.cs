@@ -29,9 +29,20 @@ namespace Cars.Repositories
             throw new System.NotImplementedException();
         }
 
-        public List<CarModel> ListCars(int page, int cant)
+        public List<ListCarsViewModel> ListCars(int page, int cant)
         {
-            throw new System.NotImplementedException();
+            return _context.Cars.ToList()
+            .Select(e=> new ListCarsViewModel
+            {
+                FotoUrl = _provider.Owners.Where(k=>k.Id == e.OwnerModelId).Select(e=>e.Avatar).SingleOrDefault(),
+                Id = e.Id,
+                Marca = e.Marca,
+                Modelo = e.Modelo,
+                Patente = e.Patente,
+                Puertas = e.Puertas,
+                Titular = _provider.Owners.Where(k=>k.Id == e.OwnerModelId).Select(e=>$"{e.First_name} {e.Last_name}").SingleOrDefault()
+            })
+            .ToList();
         }
 
         public List<OwnerModel> ListOwners()

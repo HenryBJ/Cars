@@ -1,6 +1,40 @@
+@model List<Cars.Models.ListCarsViewModel>
+
 @{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
-
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="row">
+    <div class="col-0 col-sm-0 col-md-0 col-xl-0">
+    </div>
+    
+    <div class="col-12 col-sm-12 col-md-12 col-xl-12">
+        <h3>Listado de Carros</h3>
+        <div class="table-responsive-sm">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Foto Titular</th>
+                    <th scope="col">Titular</th>
+                    <th scope="col">Patente</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Puertas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <th scope="row"><img src=@item.FotoUrl alt=@item.Titular width="80" height="80"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-0 col-sm-0 col-md-0 col-xl-0">
+    </div>
+  </div>
