@@ -40,7 +40,14 @@ namespace Cars.Controllers
         {
             if(ModelState.IsValid)
             {
-                
+                _repo.AddCar(new CarModel
+                {
+                    Marca = model.Marca,
+                    Modelo = model.Modelo,
+                    Patente = model.Patente,
+                    Puertas = model.Puertas,
+                    OwnerModelId = model.OwnerId  
+                });
             }           
 
             ModelState.Clear();

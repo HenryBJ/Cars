@@ -8,6 +8,5 @@ namespace Cars.Models
         public string Modelo { get; set; }
         public int Puertas { get; set; }
         public int OwnerModelId { get; set; }
-        public OwnerModel Titular { get; set; }
     }
 }

@@ -20,7 +20,8 @@ namespace Cars.Repositories
 
         public void AddCar(CarModel car)
         {
-            throw new System.NotImplementedException();
+            _context.Cars.Add(car);
+            _context.SaveChanges();
         }
 
         public void DeleteCar(CarModel car)
