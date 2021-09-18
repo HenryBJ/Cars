@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:latest AS build-env
 WORKDIR /app
 
 # Copy necessary files and restore as distinct layer
@@ -11,7 +11,7 @@ WORKDIR "/app/Cars"
 RUN dotnet publish "Cars.csproj" -c Release -o out
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet
+FROM mcr.microsoft.com/dotnet/core/aspnet:latest
 WORKDIR /app
 COPY --from=build-env "/app/Cars/out" .
 
