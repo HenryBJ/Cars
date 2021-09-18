@@ -1,7 +1,7 @@
 @model List<Cars.Models.ListCarsViewModel>
 
 @{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Listado de Carros";
 }
 <div class="row">
     <div class="col-0 col-sm-0 col-md-0 col-xl-0">
@@ -13,23 +13,29 @@
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">Foto Titular</th>
-                    <th scope="col">Titular</th>
-                    <th scope="col">Patente</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Modelo</th>
-                    <th scope="col">Puertas</th>
+                        <th scope="col">Foto Titular</th>
+                        <th scope="col">Titular</th>
+                        <th scope="col">Patente</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Puertas</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <th scope="row"><img src=@item.FotoUrl alt=@item.Titular width="80" height="80"></th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <tr>
+                            <th scope="row"><img src=@item.FotoUrl alt=@item.Titular class="rounded-circle" width="50" height="50"></th>
+                            <td>@item.Titular</td>
+                            <td>@item.Patente</td>
+                            <td>@item.Marca</td>
+                            <td>@item.Modelo</td>
+                            <td>@item.Puertas</td>
+                            <td>
+                                <a type="button" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>

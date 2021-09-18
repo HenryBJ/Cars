@@ -59,6 +59,12 @@ namespace Cars.Controllers
             return View(_repo.ListCars(0,0));
         }
 
+        public IActionResult Delete(int id)
+        {
+            _repo.DeleteCar(id);
+            return RedirectToAction("Listado");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

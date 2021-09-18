@@ -24,9 +24,14 @@ namespace Cars.Repositories
             _context.SaveChanges();
         }
 
-        public void DeleteCar(CarModel car)
+        public void DeleteCar(int carId)
         {
-            throw new System.NotImplementedException();
+            var item = _context.Cars.Where(e=>e.Id == carId).SingleOrDefault();
+            if(item == null) return; //TODO: log, car not found
+
+            _context.Cars.Remove(item);
+            _context.SaveChanges();    
+                        
         }
 
         public List<ListCarsViewModel> ListCars(int page, int cant)
