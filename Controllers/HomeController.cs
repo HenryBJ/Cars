@@ -24,12 +24,27 @@ namespace Cars.Controllers
 
         public IActionResult Index()
         {
-            return View(_repo.ListOwners().Select(e=>new SelectListItem
+            ViewBag.list  = _repo.ListOwners()
+            .Select(e=>new SelectListItem
             {
                 Value = e.Id.ToString(),
                 Text = $"{e.First_name} {e.Last_name}"                 
             })
-            );
+            .Append(new SelectListItem{Value="0", Text="Seleccione el titular del carro"})
+            .OrderBy(e=>e.Value);
+            return View();
+        }
+
+
+        public IActionResult OnInsert(CarViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                
+            }           
+
+            ModelState.Clear();
+            return View("Index");
         }
 
         public IActionResult Privacy()

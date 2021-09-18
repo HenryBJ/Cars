@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SelectListItem>
+﻿@model Cars.Models.CarViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -10,14 +10,14 @@
     
     <div class="col-12 col-sm-10 col-md-8 col-xl-6">
         <h3>Insertar Carro</h3>
-        <form>
+        <form method="POST" asp-action="OnInsert">
             <div class="form-group">
-                <input type="text" maxlength="8" class="form-control" id="patenteInput" placeholder="Patente">
+                <input maxlength="8" class="form-control" asp-for="Patente" id="patenteInput" placeholder="Patente">
+                <span asp-validation-for="Patente"></span>
             </div>
-            <div class="form-group">
-                                
-                <select class="form-control" id="marcaSelect">
-                <option value=0>Seleccione una Marca</option>
+            <div class="form-group">                                
+                <select class="form-control" asp-for="Marca">
+                <option value="">Seleccione una Marca</option>
                 <option>Abarth</option>
                 <option>Alfa Romeo</option>
                 <option>Aston Martin</option>
@@ -71,34 +71,46 @@
                 <option>Volkswagen</option>
                 <option>Volvo</option>
                 </select>
+                <span asp-validation-for="Marca"></span>
             </div>
             <div class="form-group">
-                <textarea class="form-control" id="modeloTextArea" rows="3" placeholder="Escriba detalles del Modelo"></textarea>
+                <textarea class="form-control" asp-for="Modelo" id="modeloTextArea" rows="3" placeholder="Escriba detalles del Modelo"></textarea>
+                <span asp-validation-for="Modelo"></span>
             </div>
             <div class="form-group">
                 <label>Cantidad de Puertas: </label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <input class="form-check-input" type="radio" asp-for="Puertas" value="2">
                     <label class="form-check-label" for="inlineRadio1">2</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <input class="form-check-input" type="radio" asp-for="Puertas" value="4">
                     <label class="form-check-label" for="inlineRadio2">4</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                    <input class="form-check-input" type="radio" asp-for="Puertas" value="6" >
                     <label class="form-check-label" for="inlineRadio2">6</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                    <input class="form-check-input" type="radio" asp-for="Puertas" value="8">
                     <label class="form-check-label" for="inlineRadio2">8</label>
                 </div>
+                <span asp-validation-for="Puertas"></span>
             </div>
             <div class="form-group">
-                <select class="form-control" id="ownerId" name="ownerId" asp-items="Model"></select>
+                <select class="form-control" asp-for="OwnerId" asp-items=@ViewBag.list></select>
+                <span asp-validation-for="OwnerId"></span>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" style="float:left;">Ver listado</button>
+                <button type="submit" class="btn btn-success" style="float: right;">Insertar</button>
             </div>
     </form>
     </div>
     <div class="col-0 col-sm-1 col-md-2 col-xl-3">
     </div>
   </div>
+
+  @section scripts{
+   <partial name="_ValidationScriptsPartial" />
+}
