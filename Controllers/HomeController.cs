@@ -6,21 +6,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Cars.Models;
+using Cars.Repositories;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cars.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICarsRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICarsRepository repo)
         {
             _logger = logger;
+            _repo = repo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_repo.ListOwners().Select(e=>new SelectListItem
+            {
+                Value = e.Id.ToString(),
+                Text = $"{e.First_name} {e.Last_name}"                 
+            })
+            );
         }
 
         public IActionResult Privacy()

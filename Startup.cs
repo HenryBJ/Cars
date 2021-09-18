@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cars.Data;
+using Cars.Repositories;
+using Cars.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +27,9 @@ namespace Cars
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<CarsDbContext>(options => options.UseSqlite("Data Source=site.db"));
+            services.AddScoped<ICarsRepository, CarsRepository>();
+            services.AddSingleton<OwnersProvider>();
             services.AddControllersWithViews();
         }
 

@@ -1,8 +1,104 @@
-﻿@{
+﻿@model IEnumerable<SelectListItem>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="row">
+    <div class="col-0 col-sm-1 col-md-2 col-xl-3">
+    </div>
+    
+    <div class="col-12 col-sm-10 col-md-8 col-xl-6">
+        <h3>Insertar Carro</h3>
+        <form>
+            <div class="form-group">
+                <input type="text" maxlength="8" class="form-control" id="patenteInput" placeholder="Patente">
+            </div>
+            <div class="form-group">
+                                
+                <select class="form-control" id="marcaSelect">
+                <option value=0>Seleccione una Marca</option>
+                <option>Abarth</option>
+                <option>Alfa Romeo</option>
+                <option>Aston Martin</option>
+                <option>Audi</option>
+                <option>Bentley</option>
+                <option>BMW</option>
+                <option>Cadillac</option>
+                <option>Caterham</option>
+                <option>Chevrolet</option>
+                <option>Citroen</option>
+                <option>Dacia</option>
+                <option>Ferrari</option>
+                <option>Fiat</option>
+                <option>Ford</option>
+                <option>Honda</option>
+                <option>Infiniti</option>
+                <option>Isuzu</option>
+                <option>Iveco</option>
+                <option>Jaguar</option>
+                <option>Jeep</option>
+                <option>Kia</option>
+                <option>KTM</option>
+                <option>Lada</option>
+                <option>Lamborghini</option>
+                <option>Lancia</option>
+                <option>Land Rover</option>
+                <option>Lexus</option>
+                <option>Lotus</option>
+                <option>Maserati</option>
+                <option>Mazda</option>
+                <option>Mercedes-Benz</option>
+                <option>Mini</option>
+                <option>Mitsubishi</option>
+                <option>Morgan</option>
+                <option>Nissan</option>
+                <option>Opel</option>
+                <option>Peugeot</option>
+                <option>Piaggio</option>
+                <option>Porsche</option>
+                <option>Renault</option>
+                <option>Rolls-Royce</option>
+                <option>Seat</option>
+                <option>Skoda</option>
+                <option>Smart</option>
+                <option>SsangYong</option>
+                <option>Subaru</option>
+                <option>Suzuki</option>
+                <option>Tata</option>
+                <option>Tesla</option>
+                <option>Toyota</option>
+                <option>Volkswagen</option>
+                <option>Volvo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="modeloTextArea" rows="3" placeholder="Escriba detalles del Modelo"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Cantidad de Puertas: </label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                    <label class="form-check-label" for="inlineRadio2">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                    <label class="form-check-label" for="inlineRadio2">8</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control" id="ownerId" name="ownerId" asp-items="Model"></select>
+            </div>
+    </form>
+    </div>
+    <div class="col-0 col-sm-1 col-md-2 col-xl-3">
+    </div>
+  </div>
